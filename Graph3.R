@@ -3,7 +3,7 @@ library(readxl)
 library(tidyverse)
 
 # 2. Import the data
-# Replace "crime_data.xlsx" with your actual file path
+
 raw_data <- read_excel("D:/IT Project/crime_type_data.xlsx", sheet = 1)
 
 # 3. Reshape the data to long format
