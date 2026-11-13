@@ -284,18 +284,4 @@ The project material identifies the following sources:
 
 The included PDF papers serve as supporting literature; they are not datasets used by the plotting scripts. Full bibliographic details, including page ranges and persistent identifiers where applicable, should be verified against the published versions before formal citation.
 
-## 👤 Project Ownership
 
-**Author:** [Add your name]  
-**GitHub:** [Add your GitHub profile or repository link]  
-**Contact:** [Add a preferred contact address, if desired]
-
----
-
-<div align="center">
-
-**Cybercrime Trends in India | 2020–2024**
-
-*An R-based descriptive visualisation of NCRB cybercrime statistics.*
-
-</div>
