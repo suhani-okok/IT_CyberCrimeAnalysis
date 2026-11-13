@@ -2,10 +2,6 @@
 # Description: This R script imports cybercrime data from an Excel file,
 #              reshapes it, and creates a clean, color-coded heatmap grid.
 
-# 1. Install and Load Required Packages
-# Un-comment the lines below if you need to install these packages first:
-# install.packages("readxl")
-# install.packages("tidyverse")
 
 library(readxl)
 library(dplyr)
@@ -46,5 +42,3 @@ ggplot(df_long, aes(x = Year, y = Crime_Head, fill = Incidents)) +
     panel.grid = element_blank() # Removes default background grid lines
   )
 
-# 6. Optional: Save the Heatmap
-# ggsave("cybercrime_heatmap.png", width = 10, height = 6, dpi = 300)
