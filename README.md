@@ -68,8 +68,11 @@ The accompanying project notes and report discuss the following areas:
 | `Graph3.R` | Grouped bar chart by crime head and year | `crime_type_data.xlsx`, worksheet 1; includes `Crime Head` and year columns `2020`–`2024`. |
 | `graph3.2.R` | Grouped bar chart by category and year | `crime_type_data.xlsx`, worksheet 2; first column contains the category and remaining columns contain year values. |
 | `Graph2.1.R` | Heatmap of cybercrime heads by year | `crime_head_data.xlsx`; includes `Crime Head` and year columns `2020`–`2024`. |
+| `Top_10_ State_UTs_ Cyber_Crime_Cases_2020_to_2024.R` | Line graph of the ten States/UTs with the highest five-year totals | `NCRB_Cyber_Crime_State_UT_2020_2024.xlsx`; worksheet `All_State_UT_Data`, with `State/UT`, year columns and `Five_Year_Total_2020_2024`. |
+| `Top_10_ Metropolitan_Cities_Cyber_Crime_Cases_2020_to_2024.R` | Line graph of the ten metropolitan cities with the highest five-year totals | `NCRB_Metropolitan_City_Cyber_Crime_2020_2024.xlsx`; worksheet `All_19_Cities`, with `City`, year columns and `Five_Year_Total`. |
+| `pending cases.R` | Grouped horizontal bar chart of pending cybercrime cases by state and year | The state/year/case values are entered directly in the R script; no Excel input is read by this script. |
 
-The state-wise, city-wise, women/children and pending-investigation analyses are described in the project notes/report material, but separate executable R scripts for those plots are not present in the supplied project files. The notes also discuss possible forecasting; however, no forecasting model or validation workflow is included in the supplied scripts.
+The state-wise, metropolitan-city and pending-investigation analyses now have executable R scripts in the repository. The women/children comparison remains described in the project notes/report material, but a corresponding executable R script was not present in the supplied project files. The notes also discuss possible forecasting; however, no forecasting model or validation workflow is included in the supplied scripts.
 
 ## 🧰 Technologies and Dependencies
 
@@ -81,7 +84,7 @@ The state-wise, city-wise, women/children and pending-investigation analyses are
 | `dplyr` | Data manipulation in `Graph2.1.R`. |
 | `tidyr` | Reshaping wide data into long format using `pivot_longer()`. |
 | `ggplot2` | Creating line charts, grouped bar charts and the heatmap. |
-| `scales` | Formatting numeric labels, including comma-separated values. |
+| `scales` | Formatting numeric labels, including comma-separated values; also used in the new state/city plots. |
 
 The scripts load packages individually. No `renv` lockfile, package manifest, or explicit R version requirement is included in the supplied files.
 
@@ -98,6 +101,11 @@ IT_CyberCrimeAnalysis/
 ├── Graph3.R                          # Grouped bar chart (Excel worksheet 1)
 ├── graph3.2.R                        # Grouped bar chart (Excel worksheet 2)
 ├── Graph2.1.R                        # Cybercrime-head heatmap
+├── Top_10_ State_UTs_ Cyber_Crime_Cases_2020_to_2024.R
+│                                     # Top 10 States/UTs line graph
+├── Top_10_ Metropolitan_Cities_Cyber_Crime_Cases_2020_to_2024.R
+│                                     # Top 10 metropolitan cities line graph
+├── pending cases.R                   # State-wise pending cases chart
 │
 ├── Pasted text.txt                   # Project graph interpretations and findings
 ├── Pasted text(1).txt                # Duplicate copy of the project notes
@@ -122,6 +130,8 @@ The scripts expect Excel data in a **wide-table format**, with years represented
 | `crime_type_data.xlsx` | `Graph3.R` | Worksheet 1 contains a `Crime Head` column and year columns `2020`, `2021`, `2022`, `2023`, `2024`. |
 | `crime_type_data.xlsx` | `graph3.2.R` | Worksheet 2 has a category column in the first position, followed by year columns. |
 | `crime_head_data.xlsx` | `Graph2.1.R` | A column named `Crime Head` and year columns `2020`, `2021`, `2022`, `2023`, `2024`. |
+| `NCRB_Cyber_Crime_State_UT_2020_2024.xlsx` | Top 10 States/UTs script | Worksheet `All_State_UT_Data`; columns `State/UT`, `2020`–`2024` and `Five_Year_Total_2020_2024`. |
+| `NCRB_Metropolitan_City_Cyber_Crime_2020_2024.xlsx` | Top 10 metropolitan cities script | Worksheet `All_19_Cities`; columns `City`, `2020`–`2024` and `Five_Year_Total`. |
 
 The scripts do not download NCRB data or independently verify the provenance and correctness of the workbooks. The project material identifies the NCRB *Crime in India* reports for 2020–2024 as the principal statistical source. For reproducibility, retain the source table, definitions and data-extraction notes alongside the prepared workbooks.
 
@@ -173,6 +183,9 @@ source("Graph_1.R")
 source("Graph3.R")
 source("graph3.2.R")
 source("Graph2.1.R")
+source("Top_10_ State_UTs_ Cyber_Crime_Cases_2020_to_2024.R")
+source("Top_10_ Metropolitan_Cities_Cyber_Crime_Cases_2020_to_2024.R")
+source("pending cases.R")
 ```
 
 Each script imports its corresponding workbook and constructs a `ggplot` visualisation. The plots are displayed through the active R graphics device.
@@ -183,6 +196,9 @@ Each script imports its corresponding workbook and constructs a `ggplot` visuali
 - **`Graph3.R`** pivots the five year columns into `Year` and `Offences`, using `Crime Head` as the fill grouping.
 - **`graph3.2.R`** pivots all columns except the first into `Year` and `Cases`, then renames the first column `Category`.
 - **`Graph2.1.R`** renames `Crime Head` to `Crime_Head`, pivots the five year columns into `Year` and `Incidents`, and maps incident counts to the heatmap fill scale.
+- **Top 10 States/UTs script** sorts the input by `Five_Year_Total_2020_2024`, selects the ten highest rows, reshapes the annual values and plots one line per State/UT.
+- **Top 10 metropolitan cities script** sorts by `Five_Year_Total`, selects the ten highest cities, reshapes the annual values and plots one line per city.
+- **`pending cases.R`** constructs a data frame from values embedded in the script and plots state-wise pending-case counts, grouped by year. It does not import an Excel workbook.
 
 Ensure that workbook sheet names, column names and layouts match these expectations. If the source workbook differs, update the import or transformation code accordingly.
 
@@ -193,8 +209,14 @@ The supplied scripts create the following plot types:
 - **Line chart:** national year-wise registered cybercrime cases, with annual values labelled.
 - **Grouped bar charts:** comparisons of crime heads or categories across the years.
 - **Heatmap:** intensity of selected cybercrime heads across the five-year period.
+- **State/UT line chart:** annual cases for the ten States/UTs ranked by five-year total.
+- **Metropolitan-city line chart:** annual cases for the ten cities ranked by five-year total.
+- **Pending-cases grouped bar chart:** state-wise counts pending investigation across 2020–2024.
 
-The plots are not written to image files by default. `Graph2.1.R` contains a commented-out `ggsave()` example. To save a plot, assign the `ggplot` result to an object and use `ggsave()`.
+The original four scripts do not consistently save plot files automatically; `Graph2.1.R` contains a commented-out `ggsave()` example. The three newly added scripts call `ggsave()` and save PNG files in the current working directory:
+- `Top10_Cyber_Crime_Line_Plot.png`
+- `Top10_Metropolitan_City_Cyber_Crime.png`
+- `Pending_Cyber_Crime_Graph.png` To save a plot, assign the `ggplot` result to an object and use `ggsave()`.
 
 For example:
 
@@ -239,9 +261,9 @@ A basic manual verification process is:
 ### Current limitations
 
 - The Excel input workbooks are not included in the supplied project files.
-- The scripts use absolute Windows file paths that must be updated on another machine.
-- Only four visualisation workflows have corresponding scripts in the supplied set; several analyses discussed in the report do not have executable scripts here.
-- Plots are displayed but are not consistently saved to files by the scripts.
+- Several workbook-based scripts use absolute, machine-specific Windows file paths that must be updated on another machine. The pending-cases script instead embeds its data directly in the source code.
+- Seven visualisation workflows have corresponding scripts in the supplied set. The women/children comparison discussed in the report still has no corresponding executable script in the supplied set.
+- Plot saving is not consistent across all scripts: the three newly added scripts save PNG files, while the earlier scripts generally display plots without saving them automatically.
 - No dependency lockfile, automated test suite or documented data-cleaning/validation pipeline is included.
 - No forecasting model is implemented in the supplied scripts.
 
@@ -285,3 +307,8 @@ The project material identifies the following sources:
 The included PDF papers serve as supporting literature; they are not datasets used by the plotting scripts. Full bibliographic details, including page ranges and persistent identifiers where applicable, should be verified against the published versions before formal citation.
 
 
+**Cybercrime Trends in India | 2020–2024**
+
+*An R-based descriptive visualisation of NCRB cybercrime statistics.*
+
+</div>
