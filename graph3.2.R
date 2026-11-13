@@ -1,5 +1,3 @@
-# Run this line once if packages are missing:
-# install.packages(c("readxl", "tidyr", "ggplot2"))
 
 library(readxl)
 library(tidyr)
@@ -8,7 +6,7 @@ library(ggplot2)
 # A pop-up window will open—select your Excel file directly
 df <- read_excel("D:/IT Project/crime_type_data.xlsx",sheet = 2)
 
-# Use -1 instead of -Category to avoid column naming errors
+
 df_long <- pivot_longer(
   df,
   cols = -1,
