@@ -1,14 +1,12 @@
 # 1. Install required packages (run these two lines once if not already installed)
-# install.packages("readxl")
-# install.packages("ggplot2")
+
 
 # 2. Load the libraries
 library(readxl)
 library(ggplot2)
 
 # 3. Import the Excel file
-# Replace "your_file.xlsx" with your actual file path/name
-# Using range = "A1:B6" ignores the empty row and the "Source:" note in row 8
+
 data <- read_excel("D:/IT Project/cyber_crime_data.xlsx", range = "A1:B6")
 
 # Ensure columns are treated as numeric
