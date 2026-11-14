@@ -303,6 +303,11 @@ The project material identifies the following sources:
 3. **S. Tanwar, T. Paul, K. Singh, M. Joshi and A. Rana (2020).** “Classification and Impact of Cyber Threats in India: A Review.” 8th International Conference on Reliability, Infocom Technologies and Optimization (ICRITO).
 4. **P. Datta, S. N. Panda, S. Tanwar and R. K. Kaushal (2020).** “A Technical Review Report on Cyber Crimes in India.” International Conference on Emerging Smart Computing and Informatics (ESCI).
 5. **R Core Team.** *R: A Language and Environment for Statistical Computing.* R Foundation for Statistical Computing.
+6. https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1701608364CrimeinIndia2022Book2.pdf
+7. https://www.ncrb.mha.gov.in/uploads/files/2CrimeinIndia2023PartII.pdf
+8. https://www.ncrb.mha.gov.in/uploads/files/2CrimeinIndia2024-VolumeII.pdf
+9. https://ruralindiaonline.org/library/resource/crime-in-india-2020-volume-ii
+10. https://ruralindiaonline.org/library/resource/crime-in-india-2021-volume-ii
 
 The included PDF papers serve as supporting literature; they are not datasets used by the plotting scripts. Full bibliographic details, including page ranges and persistent identifiers where applicable, should be verified against the published versions before formal citation.
 
