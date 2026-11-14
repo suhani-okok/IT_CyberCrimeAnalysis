@@ -1,11 +1,9 @@
-# 1. Install required packages (run these two lines once if not already installed)
 
-
-# 2. Load the libraries
+# 1. Load the libraries
 library(readxl)
 library(ggplot2)
 
-# 3. Import the Excel file
+# 2. Import the Excel file
 
 data <- read_excel("D:/IT Project/cyber_crime_data.xlsx", range = "A1:B6")
 
@@ -13,7 +11,7 @@ data <- read_excel("D:/IT Project/cyber_crime_data.xlsx", range = "A1:B6")
 data$Year <- as.numeric(data$Year)
 data$Cases <- as.numeric(data$Cases)
 
-# 4. Generate the Line Graph
+# 3. Generate the Line Graph
 ggplot(data, aes(x = Year, y = Cases)) +
   # Add the line
   geom_line(color = "#1f77b4", linewidth = 1.2) +
